@@ -8,11 +8,32 @@ class HelloWorld extends Component {
 		this.state = {
 			greeting: 'Hello'
 		};
+		this.frenchify = this.frenchify.bind(this);
+		this.removeGreeting = this.removeGreeting.bind(this);
+	}
+
+	removeGreeting() {
+		this.props.removeGreeting(this.props.name);
+	}
+
+	frenchify() {
+		this.setState({
+			greeting: 'Bonjour'
+		});
 	}
 
 	render() {
-		return(<div className="HelloWorld">Hello {this.props.name}!</div>);
+		return(
+			<div className="HelloWorld">
+				{this.state.greeting} {this.props.name}!
+				<br/>
+				<button onClick={this.frenchify}>Frenchify!</button>
+				<br/>
+				<button onClick={this.removeGreeting}>Remove Me!</button>
+			</div>
+		);
 	}
+
 }
 
 export default HelloWorld;
